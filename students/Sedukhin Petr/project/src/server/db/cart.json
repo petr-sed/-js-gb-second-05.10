@@ -1,20 +1,41 @@
 {
-  "amount": 1200,
-  "countGoods": 2,
-  "contents": [
-    {
-      "id": 45,
-      "name": "Notebook",
-      "price": 1000,
-      "img": "notebook.jpg", 
-      "qty": 1
-    },
-    {
-      "id": 56,
-      "name": "Display",
-      "price": 200,
-      "img": "display.jpg",
-      "qty": 1
-    }
-  ]
+    "amount": 1200,
+    "countGoods": 2,
+    "contents": [
+        {
+            "id": 45,
+            "name": "Notebook",
+            "price": 1000,
+            "img": "notebook.jpg",
+            "qty": 1
+        },
+        {
+            "id": 56,
+            "name": "Display",
+            "price": 200,
+            "img": "display.jpg",
+            "qty": 1
+        },
+        {
+            "id": 67,
+            "name": "Keyboard",
+            "price": 20,
+            "img": "keyboard.jpg",
+            "qty": 1
+        },
+        {
+            "id": 90,
+            "name": "Microphone",
+            "price": 10,
+            "img": "microphone.jpg",
+            "qty": 2
+        },
+        {
+            "id": 89,
+            "name": "Phones",
+            "price": 25,
+            "img": "phones.jpg",
+            "qty": 1
+        }
+    ]
 }

@@ -34,7 +34,7 @@ let app = new Vue ({
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify (data)
+                body: JSON.stringify(data)
             })
             .then (result => result.json())
             .catch (err => {

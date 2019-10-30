@@ -91,19 +91,19 @@ let cart = {
     mounted () {
         this.$parent.getJson ('/api/cart')
             .then (data => {
-                this.products = data
-                this.products = data.contents
+                this.cart = data
+                this.cart = data.contents
             })
     },        
 
     methods: {
         addProdToCart (product) {
-            let find = this.products.find (item => item.id === product.id)
+            let find = this.cart.find (item => item.id === product.id)
             if (find) {
                 this.$parent.putJson ('/api/cart/' + find.id, {qty: 1})
                     .then (data => {
                         if (data.result) {
-                            find.quantity ++
+                            find.qty ++
                         }
                     })
             } else {
@@ -111,20 +111,30 @@ let cart = {
                 this.$parent.postJson ('/api/cart', prod)
                     .then (data => {
                         if (data.result) {
-                            this.products.push (prod)
+                            this.cart.push (prod)
                         }
                     })
             }
         },
 
         removeProdFromCart (product) {
-            let res = false
-            this.cart.forEach(el => {if(el.id === product.id) { res = el}})
-            if (res.qty > 1){
-                res.qty --
-            } else {
-                this.cart.splice(this.cart.indexOf(res), 1)
+            let find = this.cart.find (item => item.id === product.id)
+            if (find.qty > 1){
+                this.$parent.putJson('api/cart/' + find.id, {qty: -1})
+                    .then (data => {
+                        if (data.result) {
+                            find.qty --
+                        } else {
+                            
+                        }
+                    })
             }
+            // this.cart.forEach(el => {if(el.id === product.id) { res = el}})
+            // if (res.qty > 1){
+            //     res.qty --
+            // } else {
+            //     this.cart.splice(this.cart.indexOf(res), 1)
+            // }
         },
 
         totalSum () {

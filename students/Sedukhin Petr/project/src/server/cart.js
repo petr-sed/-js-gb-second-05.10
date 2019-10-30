@@ -3,12 +3,12 @@ let add = (cart, req) => {
     return JSON.stringify (cart, null, 4)
 }
 
-let change = (crat, req) => {
-    let find = cart.cotents.find (el => el.id === +req.params.id)
+let change = (cart, req) => {
+    let find = cart.contents.find (el => el.id === +req.params.id)
     find.qty += +req.body.qty
     return JSON.stringify (cart, null, 4)
 }
 
-module.exports = (
+module.exports = {
     add, change
-)
+}

@@ -11,7 +11,8 @@ let handler = (req, res, action, file) => {
         if (err) {
             res.sendStatus (404, JSON.stringify ({result: 0, test: err}))
         } else {
-            let newCart = actions [action] (JSON.parse (data), req)
+
+            let newCart = actions [action] (JSON.parse(data), req)
             fs.writeFile (file, newCart, err => {
                 if (err) {
                     res.sendStatus (404, JSON.stringify ({result: 0, test: err}))
