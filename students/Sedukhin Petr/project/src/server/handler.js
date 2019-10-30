@@ -6,7 +6,7 @@ const actions = {
     change: cart.change
 }
 
-let handler = (reg, res, action, file) => {
+let handler = (req, res, action, file) => {
     fs.readFile ('./src/server/db/cart.json', 'utf-8', (err, data)=> {
         if (err) {
             res.sendStatus (404, JSON.stringify ({result: 0, test: err}))

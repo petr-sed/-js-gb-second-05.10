@@ -21,7 +21,7 @@ let catalog = {
         }
     },
     mounted () {
-        this.$parent.getJson (this.catalogUrl)
+        this.$parent.getJson ('/api/products')
             .then (data => {
                 this.products = data
                 this.filtered = data
@@ -91,32 +91,32 @@ let cart = {
     mounted () {
         this.$parent.getJson ('/api/cart')
             .then (data => {
+                this.products = data
                 this.products = data.contents
             })
     },        
 
     methods: {
         addProdToCart (product) {
-            let res = false
-            this.cart.forEach(el => {if (el.id === product.id){res = el}})
-            if (res){
-                this.$parent.putJson ('/api/cart/' + res.id, {quantity: 1})
+            let find = this.products.find (item => item.id === product.id)
+            if (find) {
+                this.$parent.putJson ('/api/cart/' + find.id, {qty: 1})
                     .then (data => {
                         if (data.result) {
-                            res.qty ++
+                            find.quantity ++
                         }
                     })
-                res.qty ++
-            } else{
-                let prod = Object.assign({}, product, {"qty": 1})
+            } else {
+                let prod = Object.assign ({}, product, {qty: 1})
                 this.$parent.postJson ('/api/cart', prod)
                     .then (data => {
                         if (data.result) {
-                            this.cart.push (prod)
+                            this.products.push (prod)
                         }
-                })
+                    })
             }
         },
+
         removeProdFromCart (product) {
             let res = false
             this.cart.forEach(el => {if(el.id === product.id) { res = el}})
